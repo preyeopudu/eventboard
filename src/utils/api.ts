@@ -1,5 +1,4 @@
 import { create } from "apisauce";
-import axios from "axios";
 
 const baseUrl =
   "https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events";
@@ -13,7 +12,7 @@ export const GetAllEvents = async () => {
   return result;
 };
 
-export const GetSingleEvent = async (id: string) => {
+export const GetSingleEvent = async (id: any) => {
   const result = await api.get(`/${id}`);
   return result;
 };

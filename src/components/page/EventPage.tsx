@@ -1,13 +1,16 @@
+// @ts-nocheck
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetSingleEvent } from "../../utils/api";
 import { FiArrowLeft } from "react-icons/fi";
+import { EventInterface } from "./Dashboard";
 const EventPage = () => {
   const { eventid } = useParams();
 
   const { data, isFetching } = useQuery("event", () => GetSingleEvent(eventid));
   const navigate = useNavigate();
-  const event = data?.data;
+  const event = data?.data as EventInterface;
+
   return (
     <div>
       {isFetching ? (

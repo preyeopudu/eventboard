@@ -1,19 +1,26 @@
+// @ts-nocheck
 import React, { useState, ChangeEvent } from "react";
 import { useQuery } from "react-query";
 import { GetAllEvents } from "../../utils/api";
 import { FiSearch } from "react-icons/fi";
-import EventRow, { EventInterface } from "../commons/EventRow";
+import EventRow from "../commons/EventRow";
 
-interface DashBoardPageProps {}
+export interface EventInterface {
+  id: number;
+  category: string;
+  title: string;
+  location: string;
+  date: string;
+  organizer: string;
+  petsAllowed: boolean;
+  // Add any other properties specific to an event
+}
 
-const DashBoardPage: React.FC<DashBoardPageProps> = () => {
-  const { data, error, isFetching, isLoading } = useQuery(
-    "events",
-    GetAllEvents
-  );
+const DashBoardPage: React.FC = () => {
+  const { data, isFetching } = useQuery("events", GetAllEvents);
   const [searchInput, setSearchInput] = useState("");
   const [filterOption, setFilterOption] = useState("all");
-  const events = data?.data || [];
+  const events: EventInterface[] = (data?.data || []) as EventInterface[];
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 2;
   const totalPages = Math.ceil(events.length / eventsPerPage);
