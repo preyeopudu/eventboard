@@ -114,36 +114,39 @@ const DashBoardPage: React.FC = () => {
         <p className="text-center">Fetching Events...</p>
       ) : (
         <>
-          <table className="min-w-full divide-x divide-y divide-y-reverse divide-gray-200">
-            <thead className="bg-white divide-y divide-x">
-              <tr>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Category
-                </th>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Title
-                </th>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Location
-                </th>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Date
-                </th>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Organizer
-                </th>
-                <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
-                  Pets Allowed
-                </th>
-              </tr>
-            </thead>
+          <div className="overflow-x-auto">
+            <table className="w-full divide-y divide-y-reverse divide-gray-200">
+              <thead className="bg-white">
+                <tr>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
+                    Category
+                  </th>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
+                    Title
+                  </th>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
+                    Location
+                  </th>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider">
+                    Organizer
+                  </th>
+                  <th className="py-4 px-6 text-left text-md font-medium text-gray-500 uppercase tracking-wider w-1/6">
+                    Pets Allowed
+                  </th>
+                </tr>
+              </thead>
 
-            <tbody className="bg-white divide-y divide-gray-200">
-              {currentEvents.map((event: EventInterface) => (
-                <EventRow key={event.id} event={event} />
-              ))}
-            </tbody>
-          </table>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {currentEvents.map((event: EventInterface) => (
+                  <EventRow key={event.id} event={event} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           {/* Pagination */}
           <div className="flex items-center justify-center mt-10">
             {currentPage > 1 && (
